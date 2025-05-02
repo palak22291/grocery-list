@@ -1,12 +1,14 @@
+import "./Navbar.css"
+
 function Navbar(){
 
     return(
-        <nav>
-        <div>
+        <nav className="navbar">
+        <div className="logo">
         Grocery Buddy
         </div>
 
-        <ul>
+        <ul className="nav-links">
         <li>Home</li>
         <li>About</li>
         <li>Recipes</li>
