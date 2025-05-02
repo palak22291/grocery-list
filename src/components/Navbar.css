@@ -1,0 +1,28 @@
+.navbar{
+    background-color: #fffbea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    font-family: sans-serif;
+}
+
+.logo{
+    font-weight: bold;
+    font-size: 24px;
+    color: #1b512d;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  
+}
+
+.nav-links li{
+    cursor:pointer;
+    color:rgba(61, 255, 47, 0.508)
+
+}
+  
