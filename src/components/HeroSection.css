@@ -9,7 +9,7 @@
 
 
 .hero-text h1 {
-    font-size: 40px;
+    font-size: 45px;
     color: #1b512d;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .hero-image {
-    width: 400px;
+    width: 500px;
     max-width: 100%;
     height: auto;
     border-radius: 16px;
