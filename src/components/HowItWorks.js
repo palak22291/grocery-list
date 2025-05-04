@@ -1,20 +1,29 @@
 import './HowItWorks.css';
 
-const HowItWorks = () => {
-  const steps = [
-    { icon: '📝', label: 'Create Your List' },
-    { icon: '🛒', label: 'Shop with Ease' },
-    { icon: '🍳', label: 'Cook Delicious Meals' }
-  ];
+const steps = [
+  {
+    label: 'Create Your List',
+    src: '/images/create_list_new.png'
+  },
+  {
+    label: 'Shop with Ease',
+    src: '/images/shop2.png'
+  },
+  {
+    label: 'Cook Delicious Meals',
+    src: '/images/cook_new.png'
+  }
+];
 
+const HowItWorks = () => {
   return (
     <section className="how">
-      <h3>How It Works</h3>
+      <h3 className="how-title">How It Works</h3>
       <div className="steps">
-        {steps.map((step, i) => (
-          <div key={i} className="step">
-            <div className="icon">{step.icon}</div>
-            <p>{step.label}</p>
+        {steps.map((step, index) => (
+          <div key={index} className="step">
+            <img src={step.src} alt={step.label} className="step-img" />
+            <p className="step-label">{step.label}</p>
           </div>
         ))}
       </div>

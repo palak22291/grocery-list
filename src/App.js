@@ -4,6 +4,7 @@ import HeroSection  from "./components/HeroSection";
 import FeaturedItems from './components/FeaturedItems';
 import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 

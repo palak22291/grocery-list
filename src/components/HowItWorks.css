@@ -1,28 +1,38 @@
 .how {
-    background: white;
-    text-align: center;
-    padding: 40px 20px;
-  }
-  
-  .how h3 {
-    color: #22543d;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .steps {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    flex-wrap: wrap;
-  }
-  
-  .step {
-    text-align: center;
-  }
-  
-  .icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-  }
-  
+  background-color: #fffbea;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.how-title {
+  color: #22543d;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.step {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.step-label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
