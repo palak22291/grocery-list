@@ -9,12 +9,17 @@ const Navbar = () => {
           <img src="/Images/logo.png" alt="GroceryBuddy Logo" className="logo-img" />
         </Link>
       </div>
-      <ul className="navbar-links">
 
-        <li className='home'>Home</li>
+      <input type="checkbox" id="menu-toggle" className="menu-toggle" />
+      <label htmlFor="menu-toggle" className="hamburger">&#9776;</label>
+
+      <ul className="navbar-links">
+        <li className="home">Home</li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/recipes">Recipes</Link></li>
         <li><Link to="/contact">Contact</Link></li>
+        <li><Link to="/login" className="login-btn">Login</Link></li>
+        <li><Link to="/signup" className="signup-btn">Sign Up</Link></li>
       </ul>
     </nav>
   );
