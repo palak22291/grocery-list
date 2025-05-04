@@ -15,7 +15,7 @@
   
 
   .logo-img {
-    height: 40px;
+    height: 120px;
     object-fit: contain;
     cursor: pointer;
   }
@@ -41,5 +41,11 @@
  
   .navbar-links li a:hover {
     color: #22543d;
+  }
+
+  .home{
+    color: #2f855a;
+    
+
   }
   
