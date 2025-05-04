@@ -1,51 +1,106 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: #f0fdf4; 
-    border-bottom: 2px solid #d1fae5;
-  }
-  
- 
-  .navbar-logo {
-    display: flex;
-    align-items: center;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #f0fdf4;
+  border-bottom: 2px solid #d1fae5;
+  flex-wrap: wrap;
+}
 
-  .logo-img {
-    height: 120px;
-    object-fit: contain;
-    cursor: pointer;
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 120px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: #2f855a;
+  cursor: pointer;
+}
+
+/* Links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #2f855a;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: #22543d;
+}
+
+.home {
+  color: #2f855a;
+}
+
+/* Login & Signup */
+.login-btn {
+  border: 1px solid #2f855a;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #2f855a;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #d1fae5;
+}
+
+.signup-btn {
+  background-color: #2f855a;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+  background-color: #22543d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
   }
-  
 
   .navbar-links {
-    list-style: none;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .menu-toggle:checked + .hamburger + .navbar-links {
     display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
-  }
-  
-
-  .navbar-links li a {
-    text-decoration: none;
-    color: #2f855a;
-    font-weight: 500;
-    font-size: 16px;
-    transition: color 0.3s ease;
-  }
-  
- 
-  .navbar-links li a:hover {
-    color: #22543d;
   }
 
-  .home{
-    color: #2f855a;
-    
-
+  .navbar-links li {
+    padding: 10px 0;
+    text-align: center;
   }
-  
+}
