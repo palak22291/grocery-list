@@ -1,24 +1,21 @@
-import "./Navbar.css"
-import React from "react";
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
-function Navbar(){
-
-    return(
-        <nav className="navbar">
-        <div className="logo">
-        Grocery Buddy
-        </div>
-
-        <ul className="nav-links">
-        <li>Home</li>
-        <li>About</li>
-        <li>Recipes</li>
-        <li>Contact</li>
-        </ul>
-        </nav>
-    )
-
-}
-
+const Navbar = () => {
+  return (
+    <nav className="navbar">
+      <div className="navbar-logo">
+        <Link to="/">
+          <img src="/Images/logo.png" alt="GroceryBuddy Logo" className="logo-img" />
+        </Link>
+      </div>
+      <ul className="navbar-links">
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/recipes">Recipes</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
+      </ul>
+    </nav>
+  );
+};
 
 export default Navbar;
