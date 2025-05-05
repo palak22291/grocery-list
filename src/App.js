@@ -5,11 +5,13 @@ import FeaturedItems from './components/FeaturedItems';
 import HowItWorks from './components/HowItWorks';
 import Footer from './components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SearchBar from './components/SearchBar';
 
 function App() {
   return (
     <Router>
       <Navbar />
+      <SearchBar/>
       <Routes>
         <Route path="/" element={<HeroSection />} />
         <Route path="/about" element={<HowItWorks />} />
