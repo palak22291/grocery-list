@@ -82,7 +82,7 @@
   background-color: #22543d;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .hamburger {
     display: block;
