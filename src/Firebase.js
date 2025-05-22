@@ -1,19 +1,21 @@
-import { initializeApp } from "Firebase/app";
-import { getAuth } from "Firebase/auth";
+// src/firebase.js
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-const FirebaseConfig = {
-  apiKey: "AIzaSyB9f-ymebIMhW-bFkLidjh1J1JkE7SStXz0",
+const firebaseConfig = {
+  apiKey: "AIzaSyBf-jYmeblmHW-bFkLdiHj1lJKE7SSIXz0",
   authDomain: "grocerybuddy-6bdb6.firebaseapp.com",
   projectId: "grocerybuddy-6bdb6",
-  storageBucket: "grocerybuddy-6bdb6.appspot.com",
+  storageBucket: "grocerybuddy-6bdb6.appspot.com", // ✅ Fixed this
   messagingSenderId: "1047437779574",
-  appId: "1:1047437779574:web:79d87cfbaca0b7a1cff557",
-  measurementId: "G-T3SVE4RPHC"
+  appId: "1:1047437779574:web:79d87cfbaca0b7a1c1f557",
+  measurementId: "G-TS3VE4RPHC"
 };
 
 // Initialize Firebase
-const app = initializeApp(FirebaseConfig)
+const app = initializeApp(firebaseConfig);
 
+// ✅ Add auth initialization
+const auth = getAuth(app);
 
-// Initialize Firebase Authentication and export it
-export const auth = getAuth(app);
+export { auth };
