@@ -1,21 +1,20 @@
-
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';  
+import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { auth, provider } from '../firebase';
 import { useNavigate } from 'react-router-dom';
-import "./SignUp.css";
+import './SignUp.css';
 
 function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSignup = async (e) => { src/components/SignUp.js
+  const handleSignup = async (e) => {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert('Signup successful!');
-      navigate('/home'); // Redirect to homepage
+      navigate('/');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         alert('Email is already in use.');
@@ -24,6 +23,25 @@ function Signup() {
       } else {
         alert(error.message);
       }
+    }
+  };
+
+  const handleGoogleSignup = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      alert('Signed in with Google!');
+      navigate('/');
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleGoogleSignOut = async () => {
+    try {
+      await signOut(auth);
+      alert('Signed out successfully!');
+    } catch (error) {
+      alert('Error signing out: ' + error.message);
     }
   };
 
@@ -49,6 +67,11 @@ function Signup() {
 
         <button type="submit">Create Account</button>
       </form>
+
+      <hr />
+
+      <button onClick={handleGoogleSignup}>Sign in with Google</button>
+      <button onClick={handleGoogleSignOut}>Sign Out</button>
     </div>
   );
 }
