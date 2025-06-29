@@ -14,7 +14,7 @@ function Signup() {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert('Signup successful!');
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         alert('Email is already in use.');
@@ -30,7 +30,7 @@ function Signup() {
     try {
       await signInWithPopup(auth, provider);
       alert('Signed in with Google!');
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       alert(error.message);
     }
