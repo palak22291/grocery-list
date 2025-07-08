@@ -1,6 +1,7 @@
 
 import GroceryList from './GroceryList'; 
 import { useState } from 'react';
+import SmartFinder from './SmartFinder';
 
 import Footer from './Footer'; 
 import RecipeSuggestion from './RecipeSuggestion';
@@ -9,9 +10,11 @@ import RecipeSuggestion from './RecipeSuggestion';
     const [items, setItems] = useState([]);
   return (
     <>
-     
+       <SmartFinder groceryItems={items}/>
      <GroceryList items={items} setItems={setItems} />
+
       <RecipeSuggestion groceryItems={items}/>
+    
    
 
        <Footer /> 
