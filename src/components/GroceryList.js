@@ -1,73 +1,67 @@
-// import React, { useState } from 'react';
-// import './GroceryList.css'; 
+import React, { useState, useEffect } from "react";
+import "./GroceryList.css";
+import { db } from "../firebase";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
-// const GroceryList = () => {
-//   const [items, setItems] = useState([]);
-//   const [newItem, setNewItem] = useState('');
+function GroceryList({ items, setItems }) {
+  const [inputItem, setInputItem] = useState("");
+  const itemsCollectionRef = collection(db, "groceryItems");
 
-//   const handleAddItem = () => {
-//     if (newItem.trim() === '') return;
-//     setItems([...items, newItem]);
-//     setNewItem('');
-//   };
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const snapshot = await getDocs(itemsCollectionRef);
+        const itemsData = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setItems(itemsData);
+      } catch (error) {
+        console.error("Error fetching grocery items: ", error);
+      }
+    };
 
-//   const handleDeleteItem = (index) => {
-//     const updatedItems = items.filter((_, i) => i !== index);
-//     setItems(updatedItems);
-//   };
+    fetchItems();
+  }, []);
 
-//   return (
-//     <div className="grocery-container">
-//       <h2 className='title'>Your Grocery List</h2>
-//       <div className="grocery-input-section">
-//         <input
-//           type="text"
-//           placeholder="Enter grocery item"
-//           value={newItem}
-//           onChange={(e) => setNewItem(e.target.value)}
-//         />
-//         <button onClick={handleAddItem}>Add</button>
-//       </div>
-
-//       <ul className="grocery-list">
-//         {items.map((item, index) => (
-//           <li key={index}>
-//             {item}
-//             <button onClick={() => handleDeleteItem(index)}>❌</button>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default GroceryList;
-
-
-import React, { useState } from 'react';
-import './GroceryList.css';
-import { FaTrash, FaCheckCircle, FaRegCircle } from 'react-icons/fa';
-
-
-function GroceryList() {
-  const [items, setItems] = useState([]);
-  const [inputItem, setInputItem] = useState('');
-
-  const handleAdd = () => {
-    if (inputItem.trim() === '') return;
-    setItems([...items, { text: inputItem, purchased: false }]);
-    setInputItem('');
+  const handleAdd = async () => {
+    if (inputItem.trim() === "") return;
+    const newItem = { text: inputItem, purchased: false };
+    try {
+      const docRef = await addDoc(itemsCollectionRef, newItem);
+      setItems([...items, { ...newItem, id: docRef.id }]);
+      setInputItem("");
+    } catch (error) {
+      console.error("Error adding item: ", error);
+    }
   };
 
-  const handleDelete = (index) => {
-    const newItems = items.filter((_, i) => i !== index);
-    setItems(newItems);
+  const handleDelete = async (id) => {
+    try {
+      await deleteDoc(doc(db, "groceryItems", id));
+      setItems(items.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
   };
 
-  const togglePurchased = (index) => {
-    const newItems = [...items];
-    newItems[index].purchased = !newItems[index].purchased;
-    setItems(newItems);
+  const clearAllItems = async () => {
+    try {
+      const deletions = items.map((item) =>
+        deleteDoc(doc(db, "groceryItems", item.id))
+      );
+      await Promise.all(deletions);
+      setItems([]);
+    } catch (error) {
+      console.error("Error clearing all items: ", error);
+    }
   };
 
   return (
@@ -78,30 +72,33 @@ function GroceryList() {
           type="text"
           value={inputItem}
           onChange={(e) => setInputItem(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleAdd();
+          }}
           placeholder="Enter grocery item"
         />
         <button onClick={handleAdd}>Add</button>
       </div>
 
-      <ul className="grocery-list">
-        {items.map((item, index) => (
-          <li className="grocery-item" key={index}>
-            <span
-              className={`grocery-text ${item.purchased ? 'purchased' : ''}`}
-              onClick={() => togglePurchased(index)}
-            >
-              {item.purchased ? <FaCheckCircle /> : <FaRegCircle />}
-              <span>{item.text}</span>
-            </span>
-            <button onClick={() => handleDelete(index)} className="delete-btn">
-              <FaTrash />
+      {/* ✨ Modern Tag-Style Items */}
+      <div className="grocery-tags">
+        {items.map((item) => (
+          <div className="tag-card" key={item.id}>
+            🛒 {item.text}
+            <button className="remove-btn" onClick={() => handleDelete(item.id)}>
+              ×
             </button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
+
+      {items.length > 0 && (
+        <button className="clear-btn" onClick={clearAllItems}>
+          Clear All
+        </button>
+      )}
     </div>
   );
 }
 
 export default GroceryList;
-

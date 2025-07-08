@@ -1,16 +1,21 @@
 
-// import SearchBar from './SearchBar';
 import GroceryList from './GroceryList'; 
-import FeaturedItems from './FeaturedItems'; 
-import Footer from './Footer'; 
+import { useState } from 'react';
 
-const Grocery = () => {
+import Footer from './Footer'; 
+import RecipeSuggestion from './RecipeSuggestion';
+
+  const Grocery = () => {
+    const [items, setItems] = useState([]);
   return (
     <>
-      {/* <SearchBar /> */}
-      <GroceryList />
-      <FeaturedItems />  
+     
+     <GroceryList items={items} setItems={setItems} />
+      <RecipeSuggestion groceryItems={items}/>
+   
+
        <Footer /> 
+
       
     </>
   );
