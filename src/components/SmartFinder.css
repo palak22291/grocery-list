@@ -15,8 +15,6 @@
   margin-bottom: 1.5rem;
 }
 
-
-
 .tip-banner {
   background-color: #e0f7fa;
   padding: 10px 15px;
@@ -26,7 +24,6 @@
   margin-bottom: 1.5rem;
   border-radius: 8px;
 }
-
 
 .smart-input-group {
   display: flex;
@@ -82,7 +79,7 @@
   border-radius: 12px;
   padding: 1rem;
   text-align: center;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .recipe-card img {

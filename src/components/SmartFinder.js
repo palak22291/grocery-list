@@ -47,7 +47,7 @@ function SmartFinder({ groceryItems }) {
   return (
     <div className="smart-finder-container" data-aos="fade-down">
       <h2>🔍 Smart Recipe Finder</h2>
-    
+
       <div className="tip-banner">
         💡 Try typing "pasta" or select a filter like "High Protein" to discover
         quick recipe ideas!
