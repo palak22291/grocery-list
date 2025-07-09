@@ -1,9 +1,32 @@
-.smart-finder {
+.smart-finder-container {
+  background-color: #fffef0;
   padding: 2rem;
-  background: #fff9ec;
-  border-radius: 10px;
-  margin-top: 2rem;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
+
+.smart-finder-container h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+}
+
+
+
+.tip-banner {
+  background-color: #e0f7fa;
+  padding: 10px 15px;
+  border-left: 5px solid #00acc1;
+  font-size: 0.95rem;
+  color: #004d40;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+}
+
 
 .smart-input-group {
   display: flex;
@@ -13,64 +36,64 @@
 
 .smart-input-group input {
   flex: 1;
-  padding: 0.8rem;
-  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
 .smart-input-group button {
-  padding: 0.8rem 1.2rem;
-  background: #1b5e20;
+  padding: 0.6rem 1.2rem;
+  background-color: #004b50;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
 .filter-chips {
   display: flex;
-  gap: 0.6rem;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .chip {
-  padding: 0.5rem 1rem;
-  background: #eee;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 0.9rem;
+  background-color: #f0f0f0;
 }
 
 .chip.active {
-  background: #1b5e20;
+  background-color: #007867;
   color: white;
 }
 
 .recipe-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .recipe-card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
+  background-color: white;
+  border-radius: 12px;
   padding: 1rem;
   text-align: center;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
 }
 
 .recipe-card img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .view-link {
   display: inline-block;
   margin-top: 0.5rem;
-  color: #1b5e20;
-  font-weight: bold;
+  color: #00695c;
+  font-weight: 500;
+  text-decoration: none;
 }

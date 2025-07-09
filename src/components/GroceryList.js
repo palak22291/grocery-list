@@ -65,8 +65,8 @@ function GroceryList({ items, setItems }) {
   };
 
   return (
-    <div className="grocery-container">
-      <h2>My Grocery List</h2>
+    <div className="grocery-container" data-aos="fade-up">
+        <h2>🛒 My Grocery List</h2>
       <div className="grocery-input-section">
         <input
           type="text"

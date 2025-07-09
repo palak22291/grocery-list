@@ -1,13 +1,20 @@
 .grocery-container {
-  background-color: #fff8e1;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px auto;
+  background-color: #fffef0;
+  padding: 2rem;
+  margin: 2rem auto;
   width: 90%;
-  max-width: 600px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
+
+.grocery-container h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+}
+
 
 .grocery-input-section {
   display: flex;
@@ -88,6 +95,3 @@
   background-color: #de223f;
 }
 
-.grocery-container h2{
-  color: #006400;
-}

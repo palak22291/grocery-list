@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
-import './SmartFinder.css';
+import React, { useState } from "react";
+import "./SmartFinder.css";
 
-const filters = ['Vegetarian', 'High Protein','Low Calorie', 'Vegan', 'Breakfast', 'Dinner'];
+const filters = [
+  "Vegetarian",
+  "High Protein",
+  "Low Calorie",
+  "Vegan",
+  "Breakfast",
+  "Dinner",
+];
 
 function SmartFinder({ groceryItems }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [selectedFilters, setSelectedFilters] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,8 +27,8 @@ function SmartFinder({ groceryItems }) {
   const handleSearch = async () => {
     if (groceryItems.length === 0 && !query.trim()) return;
 
-    const ingredients = groceryItems.map((item) => item.text).join(',');
-    const tags = selectedFilters.join(',');
+    const ingredients = groceryItems.map((item) => item.text).join(",");
+    const tags = selectedFilters.join(",");
 
     setLoading(true);
     try {
@@ -31,16 +38,20 @@ function SmartFinder({ groceryItems }) {
       const data = await res.json();
       setRecipes(data.results || []);
     } catch (err) {
-      console.error('Error fetching smart recipes:', err);
+      console.error("Error fetching smart recipes:", err);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="smart-finder">
+    <div className="smart-finder-container" data-aos="fade-down">
       <h2>🔍 Smart Recipe Finder</h2>
-
+    
+      <div className="tip-banner">
+        💡 Try typing "pasta" or select a filter like "High Protein" to discover
+        quick recipe ideas!
+      </div>
       <div className="smart-input-group">
         <input
           type="text"
@@ -55,7 +66,9 @@ function SmartFinder({ groceryItems }) {
         {filters.map((filter) => (
           <span
             key={filter}
-            className={`chip ${selectedFilters.includes(filter) ? 'active' : ''}`}
+            className={`chip ${
+              selectedFilters.includes(filter) ? "active" : ""
+            }`}
             onClick={() => handleFilterToggle(filter)}
           >
             {filter}
@@ -70,9 +83,10 @@ function SmartFinder({ groceryItems }) {
           <div key={recipe.id} className="recipe-card">
             <img src={recipe.image} alt={recipe.title} />
             <h4>{recipe.title}</h4>
-
             <a
-              href={`https://spoonacular.com/recipes/${recipe.title.toLowerCase().replace(/ /g, '-')}-${recipe.id}`}
+              href={`https://spoonacular.com/recipes/${recipe.title
+                .toLowerCase()
+                .replace(/ /g, "-")}-${recipe.id}`}
               target="_blank"
               rel="noreferrer"
               className="view-link"
