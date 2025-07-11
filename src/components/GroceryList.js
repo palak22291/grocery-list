@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./GroceryList.css";
 import { db } from "../firebase";
@@ -13,23 +14,53 @@ import {
 function GroceryList({ items, setItems }) {
   const [inputItem, setInputItem] = useState("");
   const itemsCollectionRef = collection(db, "groceryItems");
+  const [suggestions, setSuggestions] = useState([]);
+  const API_KEY = "6c1f1bb8d430479ab0bb8dbb6bf0a83a";
+
+  // useEffect(() => {
+  //   const fetchItems = async () => {
+  //     try {
+  //       const snapshot = await getDocs(itemsCollectionRef);
+  //       const itemsData = snapshot.docs.map((doc) => ({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       }));
+  //       setItems(itemsData);
+  //     } catch (error) {
+  //       console.error("Error fetching grocery items: ", error);
+  //     }
+  //   };
+
+  //   fetchItems();
+  // }, []);
 
   useEffect(() => {
-    const fetchItems = async () => {
+    const fetchSuggestions = async () => {
+      if (inputItem.trim() === "") {
+        setSuggestions([]);
+        return;
+      }
+
       try {
-        const snapshot = await getDocs(itemsCollectionRef);
-        const itemsData = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setItems(itemsData);
+        const res = await axios.get(
+          "https://api.spoonacular.com/food/ingredients/autocomplete",
+          {
+            params: {
+              query: inputItem,
+              number: 5,
+              apiKey: API_KEY,
+            },
+          }
+        );
+        setSuggestions(res.data);
       } catch (error) {
-        console.error("Error fetching grocery items: ", error);
+        console.error("Error fetching suggestions:", error);
       }
     };
 
-    fetchItems();
-  }, []);
+    const debounce = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(debounce);
+  }, [inputItem]);
 
   const handleAdd = async () => {
     if (inputItem.trim() === "") return;
@@ -40,6 +71,18 @@ function GroceryList({ items, setItems }) {
       setInputItem("");
     } catch (error) {
       console.error("Error adding item: ", error);
+    }
+  };
+
+  const handleSuggestionClick = async (name) => {
+    const newItem = { text: name, purchased: false };
+    try {
+      const docRef = await addDoc(itemsCollectionRef, newItem);
+      setItems([...items, { ...newItem, id: docRef.id }]);
+      setInputItem("");
+      setSuggestions([]);
+    } catch (error) {
+      console.error("Error adding item from suggestion: ", error);
     }
   };
 
@@ -66,8 +109,9 @@ function GroceryList({ items, setItems }) {
 
   return (
     <div className="grocery-container" data-aos="fade-up">
-        <h2>🛒 My Grocery List</h2>
+      <h2>🛒 My Grocery List</h2>
       <div className="grocery-input-section">
+      <div className="input-wrapper">
         <input
           type="text"
           value={inputItem}
@@ -77,15 +121,28 @@ function GroceryList({ items, setItems }) {
           }}
           placeholder="Enter grocery item"
         />
+        {suggestions.length > 0 && (
+          <ul className="suggestion-dropdown">
+            {suggestions.map((sugg, index) => (
+              <li key={index} onClick={() => handleSuggestionClick(sugg.name)}>
+                {sugg.name}
+              </li>
+            ))}
+          </ul>
+        )}
         <button onClick={handleAdd}>Add</button>
+        </div>
       </div>
+      
 
-      {/* ✨ Modern Tag-Style Items */}
       <div className="grocery-tags">
         {items.map((item) => (
           <div className="tag-card" key={item.id}>
             🛒 {item.text}
-            <button className="remove-btn" onClick={() => handleDelete(item.id)}>
+            <button
+              className="remove-btn"
+              onClick={() => handleDelete(item.id)}
+            >
               ×
             </button>
           </div>

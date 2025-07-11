@@ -28,6 +28,12 @@
   width: 60%;
   border-radius: 8px;
   border: 1px solid #ccc;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.grocery-input-section input:focus {
+  box-shadow: 0 0 0 3px #ccead6;
+  transform: scale(1.02);
+  outline: none;
 }
 
 .grocery-input-section button {
@@ -95,3 +101,52 @@
   background-color: #de223f;
 }
 
+.suggestion-dropdown {
+  position: absolute;
+  top: 100%; /* drops it directly below input */
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 4px;
+  list-style: none;
+  padding: 0;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.suggestion-dropdown li {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 15px;
+  /* transition: background 0.2s ease; */
+}
+
+.suggestion-dropdown li:hover {
+  background-color: #f0f0f0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input-wrapper {
+  position: relative;
+  width: 60%;
+  margin-bottom: 40px;
+}
+
+.input-wrapper:has(.suggestion-dropdown) {
+  margin-bottom: 160px;
+}
