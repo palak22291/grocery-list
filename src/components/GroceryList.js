@@ -6,10 +6,10 @@ import { db } from "../firebase";
 import {
   collection,
   addDoc,
-  getDocs,
+ 
   deleteDoc,
-  doc,
-  updateDoc,
+  doc
+ 
 } from "firebase/firestore";
 
 function GroceryList({ items, setItems }) {
