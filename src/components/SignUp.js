@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
-import { auth, provider } from '../firebase';
+
+import { auth } from '../firebase';
+import { provider } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 

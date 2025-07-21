@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "./GroceryList.css";
+
 import { db } from "../firebase";
 import {
   collection,
@@ -17,22 +18,7 @@ function GroceryList({ items, setItems }) {
   const [suggestions, setSuggestions] = useState([]);
   const API_KEY = "6c1f1bb8d430479ab0bb8dbb6bf0a83a";
 
-  // useEffect(() => {
-  //   const fetchItems = async () => {
-  //     try {
-  //       const snapshot = await getDocs(itemsCollectionRef);
-  //       const itemsData = snapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       }));
-  //       setItems(itemsData);
-  //     } catch (error) {
-  //       console.error("Error fetching grocery items: ", error);
-  //     }
-  //   };
 
-  //   fetchItems();
-  // }, []);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
