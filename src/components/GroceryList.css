@@ -150,3 +150,9 @@
 .input-wrapper:has(.suggestion-dropdown) {
   margin-bottom: 160px;
 }
+
+.purchased {
+  opacity: 0.6;
+  color: gray;
+}
+
